@@ -5,7 +5,7 @@
  */
 
 var app = require('../app');
-var debug = require('debug')('express-codercomm-api:server');
+var debug = require('debug')('coder-comm-be:server');
 var http = require('http');
 
 /**
