@@ -1,4 +1,4 @@
-const Friend = require("../model/User");
+const Friend = require("../models/User");
 
 const friendController = {};
 
