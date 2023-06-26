@@ -3,20 +3,35 @@ const Schema = mongoose.Schema;
 
 const commentSchema = Schema(
   {
-    content: { type: String, require: true },
-    image: { type: String, default: "" },
-    author: { type: Schema.Types.ObjectId, require: true, ref: "User" },
-    post: { type: Schema.Types.ObjectId, require: true, ref: "Post" },
-    reaction: {
-      like: { type: Number, default: 0 },
-      dislike: { type: Number, default: 0 },
+    content: {
+      type: String,
+      required: true,
     },
-
-    isDelete: { type: Boolean, default: false, select: false },
+    author: {
+      type: Schema.ObjectId,
+      required: true,
+      ref: "User",
+    },
+    post: {
+      type: Schema.ObjectId,
+      required: true,
+      ref: "Post",
+    },
+    reactions: {
+      like: {
+        type: Number,
+        default: 0,
+      },
+      dislike: {
+        type: Number,
+        default: 0,
+      },
+    },
   },
-  { timestamps: true }
+  {
+    timestamps: true,
+  }
 );
 
 const Comment = mongoose.model("Comment", commentSchema);
-
 module.exports = Comment;
