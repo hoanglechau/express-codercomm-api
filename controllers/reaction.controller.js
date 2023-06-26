@@ -1,6 +1,6 @@
 const { default: mongoose } = require("mongoose");
 const { sendResponse, catchAsync, AppError } = require("../helpers/utils");
-const Reaction = require("../model/User");
+const Reaction = require("../models/User");
 
 const reactionController = {};
 
