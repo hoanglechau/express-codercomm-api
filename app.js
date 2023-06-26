@@ -21,10 +21,10 @@ app.use("/api", indexRouter);
 app.use(cors());
 const mongoose = require("mongoose");
 /* DB connection*/
-const mongoURI = process.env.MONGODB_URI;
+const mongoURI = process.env.MONGO_URI;
 mongoose
   .connect(mongoURI)
-  .then(() => console.log(`DB connected ${mongoURI}`))
+  .then(() => console.log(`Connected to database`))
   .catch(err => console.log(err));
 
 //   Error Handlers
