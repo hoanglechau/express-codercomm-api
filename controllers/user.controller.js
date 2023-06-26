@@ -1,6 +1,6 @@
 const { sendResponse, AppError, catchAsync } = require("../helpers/utils");
-const User = require("../model/User");
-const Friend = require("../model/Friend");
+const User = require("../models/User");
+const Friend = require("../models/Friend");
 const bcrypt = require("bcryptjs");
 const userController = {};
 
