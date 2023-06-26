@@ -1,13 +1,13 @@
+require("dotenv").config();
+const cors = require("cors");
+
 const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
-const cors = require("cors");
-require("dotenv").config();
+const { sendResponse } = require("./helpers/utils");
 
 const indexRouter = require("./routes/index");
-
-const { sendResponse } = require("./helpers/utils");
 
 const app = express();
 
@@ -16,28 +16,26 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
-app.use(cors());
-
 app.use("/api", indexRouter);
 
-const port = process.env.PORT || 5000;
+app.use(cors());
 const mongoose = require("mongoose");
-mongoose.set("strictQuery", false);
-const mongoURI = process.env.MONGO_URI;
+/* DB connection*/
+const mongoURI = process.env.MONGODB_URI;
 mongoose
   .connect(mongoURI)
-  .then(() => console.log(`Server is listening on port ${port}`))
-  .catch(err => console.log(err.message));
+  .then(() => console.log(`DB connected ${mongoURI}`))
+  .catch(err => console.log(err));
 
-//Error handler
-//catch 404
-app.use((res, req, next) => {
-  const err = new Error("Not found");
+//   Error Handlers
+// catch 404
+app.use((req, res, next) => {
+  const err = new Error("Not Found");
   err.statusCode = 404;
   next(err);
 });
 
-app.use((err, res, req, next) => {
+app.use((err, req, res, next) => {
   console.log("ERROR", err);
   if (err.isOperational) {
     return sendResponse(
@@ -55,7 +53,7 @@ app.use((err, res, req, next) => {
       false,
       null,
       { message: err.message },
-      "Internal Sever Error"
+      "Internal Server Error"
     );
   }
 });
