@@ -1,8 +1,8 @@
 const { catchAsync, sendResponse, AppError } = require("../helpers/utils");
-const Comment = require("../model/Comment");
-const Friend = require("../model/Friend");
-const Post = require("../model/Post");
-const User = require("../model/User.js");
+const Comment = require("../models/Comment");
+const Friend = require("../models/Friend");
+const Post = require("../models/Post");
+const User = require("../models/User");
 
 const postController = {};
 
