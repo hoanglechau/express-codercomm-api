@@ -1,25 +1,24 @@
 const express = require("express");
-const { body } = require("express-validator");
-
-const validators = require("../middlewares/validators");
 const authController = require("../controllers/auth.controller");
+const validators = require("../middlewares/validators");
 const router = express.Router();
+const { body } = require("express-validator");
 
 /**
  * @route POST /auth/login
- * @description log in with email and password
+ * @description  Log in with email and password
  * @body {email, password}
  * @access Public
  */
+
 router.post(
   "/login",
   validators.validate([
-    body("name", "Invalid name").exists().notEmpty(),
-    body("email", "Invalid email")
+    body("email", "invalid email")
       .exists()
       .isEmail()
       .normalizeEmail({ gmail_remove_dots: false }),
-    body("password", "Invaliad password").exists().notEmpty(),
+    body("password", "invalid password").exists().notEmpty(),
   ]),
   authController.loginWithEmail
 );
