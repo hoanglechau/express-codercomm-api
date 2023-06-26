@@ -1,5 +1,5 @@
 const { AppError, catchAsync, sendResponse } = require("../helpers/utils");
-const User = require("../model/User");
+const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const authController = {};
 
